@@ -20,7 +20,6 @@ Backend component of a bank account validation app. Node.js Express API with Typ
 - typescript >= 4.0
 
 ## Running the API
-### Development
 To start the application in development mode:
 
 Create a `.env` file in the root folder. You can find reference in the `.env.example` file.
@@ -44,7 +43,7 @@ To run integration tests:
 npm test
 ```
 
-- What's a good reason why the pure Levenshtein Distance algorithm might be a more effective solution than the broader Damerau–Levenshtein Distance algorithm in this specific scenario.
+### What's a good reason why the pure Levenshtein Distance algorithm might be a more effective solution than the broader Damerau–Levenshtein Distance algorithm in this specific scenario.
 
 Unlike the pure Levenshtein Distance algorithm(pLD), the Damerau–Levenshtein Distance algorithm (D-LD) considers the transposition of adjacent characters as a valid edit operation. Transposition in this case means that “Jane Doe” is considered the same as “Doe Jane”.
 
