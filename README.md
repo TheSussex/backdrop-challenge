@@ -45,11 +45,11 @@ npm test
 
 ### What's a good reason why the pure Levenshtein Distance algorithm might be a more effective solution than the broader Damerau–Levenshtein Distance algorithm in this specific scenario.
 
-Unlike the pure Levenshtein Distance algorithm(pLD), the Damerau–Levenshtein Distance algorithm (D-LD) considers the transposition of adjacent characters as a valid edit operation. Transposition in this case means that “Jane Doe” is considered the same as “Doe Jane”.
+Unlike the pure Levenshtein Distance algorithm (pLD), the Damerau–Levenshtein Distance algorithm (D-LD) considers transposition of adjacent characters a valid edit operation, meaning "Jane Doe" is equivalent to "Doe Jane." 
 
-Because bank account names are very sensitive and strict, using pLD might be more effective because it helps validate the user input in the exact order it was entered. 
+When dealing with sensitive and strict data like bank account names, using pLD may be more effective as it validates the user input in the exact order it was entered. 
 
-This provides a more accurate measurement of string similarity for inputs without transposed characters and removes the added complexity of transpositions making it faster to process strings.
+This approach provides a more accurate measurement of string similarity for inputs without transposed characters and eliminates the added complexity of transpositions, making string processing faster.
 
 
 ### If you make any major assumptions about any part of your solution, please state them in the readme
