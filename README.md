@@ -50,3 +50,9 @@ Unlike the pure Levenshtein Distance algorithm(pLD), the Damerau–Levenshtein D
 Because bank account names are very sensitive and strict, using pLD might be more effective because it helps validate the user input in the exact order it was entered. 
 
 This provides a more accurate measurement of string similarity for inputs without transposed characters and removes the added complexity of transpositions making it faster to process strings.
+
+
+### If you make any major assumptions about any part of your solution, please state them in the readme
+In my soultion, I assumed that the order in which the user_accoutn_name is written matters greatly. If an account is registered with "Ologunsua Success" in the bank, it needs to be be validated same way and same order and not with "Success Ologunsua".
+
+The reason for this assumption is based on my knowlegde of how strict banks take issues of account naming, it's so serious that people are required to swear an affidavit to to make a few letter changes and it will be nice to uphold that level of scrutiny. We're are dealing with people's money so impersonation needs to be greatly discouraged.
