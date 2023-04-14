@@ -36,6 +36,7 @@ Start the application in dev env:
 npm run watch
 ```
 
+Here is a [link to the Postman Documentation](https://documenter.getpostman.com/view/23687723/2s93Xx1jos).
 
 ### Testing
 To run integration tests: 
