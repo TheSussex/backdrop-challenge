@@ -1,0 +1,8 @@
+node_modules
+package-lock.json
+schema.gql
+.env
+.DS_Store
+dist
+coverage
+*.log
