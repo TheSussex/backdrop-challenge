@@ -15,7 +15,7 @@ Backend component of a bank account validation app. Node.js Express API with Typ
 
 ## Requirements
 
-- node >= 14
+- node >= 16
 - npm >= 6
 - typescript >= 4.0
 
