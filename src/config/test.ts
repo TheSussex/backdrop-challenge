@@ -12,7 +12,7 @@ const config: ConfigInterface = {
     password: process.env.PASSWORD,
     port: PORT || 5432,
     cache: false,
-    database: process.env.DATABASE,
+    database: 'backdrop_test_db',
     dropSchema: true,
     entities: ['src/entities/*.ts'],
     logger: 'advanced-console' as const,

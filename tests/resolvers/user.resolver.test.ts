@@ -9,7 +9,6 @@ describe("Test validate bank account details", () => {
             user_account_number,
             user_bank_code,
             is_verified,
-            created_at
         }
     }`;
 
@@ -34,14 +33,12 @@ describe("Test validate bank account details", () => {
     const response = await server.executeOperation({
       query: QUERY,
       variables: {
-        userAccountNumber: "2387324395",
-        userBankCode: "00",
-        userAccountName: "qwer",
+        userAccountNumber: "2070823040",
+        userBankCode: "000",
+        userAccountName: "Ologunsua Success",
       },
     });
-    expect(response).toGraphQLResponseError(
-      new Error("Invalid bank code")
-    );
+    expect(response).toGraphQLResponseError(new Error("Unknown bank code: 000"));
   });
 
   test("Should throw error if user inputted name does not match api provided name", async () => {
@@ -62,18 +59,19 @@ describe("Test validate bank account details", () => {
     const response = await server.executeOperation({
       query: QUERY,
       variables: {
-        user_account_name: "Success Ologunsua",
-        user_account_number: "2070823040",
-        user_bank_code: "033"
+        userAccountNumber: "2070823040",
+        userBankCode: "033",
+        userAccountName: "Ologunsua Success",
       },
     });
-
     expect(response.data).toGraphQLResponseData({
-      verifyUserBankAccountInfo: [
-        {
-          id: 1,
-        },
-      ],
+      verifyUserBankAccountInfo: {
+        id: 1, 
+        is_verified: true, 
+        user_account_name: "Ologunsua Success", 
+        user_account_number: "2070823040", 
+        user_bank_code: "033"
+      },
     });
   });
 
@@ -82,9 +80,9 @@ describe("Test validate bank account details", () => {
     const response = await server.executeOperation({
       query: QUERY,
       variables: {
-        user_account_name: "Success Ologunsua",
-        user_account_number: "2070823040",
-        user_bank_code: "033"
+        userAccountNumber: "2070823040",
+        userBankCode: "033",
+        userAccountName: "Ologunsua Success",
       },
     });
     expect(response).toGraphQLResponseError(new Error("Account already exists"));
@@ -106,9 +104,7 @@ describe("Test get bank account name", () => {
             bankCode: "000",
           },
         });
-        expect(response).toGraphQLResponseError(
-          new Error("Invalid bank code")
-        );
+        expect(response).toGraphQLResponseError(new Error("Unknown bank code: 000"));
       });
 
     test("Should successfully fetch saved user details in the DB", async () => {
@@ -120,14 +116,22 @@ describe("Test get bank account name", () => {
         bankCode: "033",
       },
     });
-
     expect(response.data).toGraphQLResponseData({
-        getUserAccountName: [
-        {
-          id: 1,
-          user_account_name: 'Success Ologunsua'
-        },
-      ],
+        getUserAccountName: "Ologunsua Success",
     });
-  });
+    });
+
+    test("Should successfully fetch user details not saved in the DB from Paystack API", async () => {
+      const server = createApolloServer();
+      const response = await server.executeOperation({
+        query: QUERY,
+        variables: {
+          accountNumber: "2066335072",
+          bankCode: "033",
+        },
+      });
+      expect(response.data).toGraphQLResponseData({
+          getUserAccountName: "Ologunsua Yemi",
+      });
+      });
 });

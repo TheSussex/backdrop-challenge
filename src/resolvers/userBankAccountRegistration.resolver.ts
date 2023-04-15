@@ -16,14 +16,14 @@ export default class BankAccountRegistrationResolver {
    *   mutation resolver to validate user inputted bank account details
    *   @returns {UserEntity} response
    */
-  @Mutation(() => [UserEntity], {
+  @Mutation(() => UserEntity, {
     description: "validate user inputted bank account details",
   })
   async verifyUserBankAccountInfo(
     @Arg("user_account_name", { nullable: false }) user_account_name: string,
     @Arg("user_account_number", { nullable: false }) user_account_number: string,
     @Arg("user_bank_code", { nullable: false }) user_bank_code: string
-  ): Promise<[UserEntity] | Error> {
+  ): Promise<UserEntity | Error> {
     try {
       const userRepository = getRepository(UserEntity);
 
@@ -59,7 +59,7 @@ export default class BankAccountRegistrationResolver {
         user.is_verified = true;
         await userRepository.save(user);
         logger.info(`User data saved in the database in userBankAccountRegistration.resolver.ts`);
-        return [user];
+        return user;
       }
 
       // if name doesn't match paystack's, calculate ld
@@ -73,7 +73,7 @@ export default class BankAccountRegistrationResolver {
         user.is_verified = true;
         await userRepository.save(user);
         logger.info(`New account details saved in the db userBankAccountRegistration.resolver.ts`);
-        return [user];
+        return user;
       } else {
         logger.info(`User account name does not match the account name returned by the API in userBankAccountRegistration.resolver.ts`);
         return new Error("Names doesn't match");
